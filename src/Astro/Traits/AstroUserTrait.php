@@ -20,10 +20,11 @@ trait AstroUserTrait
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+
     public function roles($company_id = null)
     {
         if (!is_null($company_id)) {
-            return $this->belongsToMany(Config::get('astro.role'), Config::get('astro.role_user_table'), 'user_id', 'role_id')->where('role_user.company_id', $company_id)->withPivot('company_id')->get();
+            return $this->belongsToMany(Config::get('astro.role'), Config::get('astro.role_user_table'), 'user_id', 'role_id')->wherePivot('company_id', $company_id)->withPivot('company_id');
         }
         return $this->belongsToMany(Config::get('astro.role'), Config::get('astro.role_user_table'), 'user_id', 'role_id')->withPivot('company_id');
     }
