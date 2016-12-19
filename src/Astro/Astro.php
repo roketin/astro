@@ -86,7 +86,7 @@ class Astro
      */
     public function user()
     {
-        return $this->app->auth->user();
+        return $this->app->auth->user()->get();
     }
 
     /**
